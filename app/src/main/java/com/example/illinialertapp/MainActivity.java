@@ -29,34 +29,34 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home: // how is this not a constant??
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, homeFragment)
-                        .commit();
-                return true;
-
-            case R.id.map:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, mapFragment)
-                        .commit();
-                return true;
-
-            case R.id.data:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, dataFragment)
-                        .commit();
-                return true;
-
-            case R.id.call:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.flFragment, callFragment)
-                        .commit();
-                return true;
+        int itemId = item.getItemId();
+        if (itemId == R.id.home) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flFragment, homeFragment)
+                    .commit();
+            return true;
+        }
+        else if (itemId == R.id.map) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flFragment, mapFragment)
+                    .commit();
+            return true;
+        }
+        else if (itemId == R.id.data) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flFragment, dataFragment)
+                    .commit();
+            return true;
+        }
+        else if (itemId == R.id.call) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flFragment, callFragment)
+                    .commit();
+            return true;
         }
         return false;
     }
