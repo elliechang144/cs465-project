@@ -1,6 +1,7 @@
 package com.example.illinialertapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.ImageButton;
+
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,6 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.view.View;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,6 +105,13 @@ public class MapFragment extends Fragment {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLoc, 15f));
             }
         });
+
+//        ((ImageButton) view).setImageResource(R.drawable.baseline_filter_list_24);
+
+//        imageButton.setBackgroundResource(android.R.drawable.arrow_up_float);
+        ImageButton imageButton = view.findViewById(R.id.filterButton);
+        imageButton.setBackgroundResource(R.drawable.baseline_filter_list_24);
+
         return view;
     }
 
