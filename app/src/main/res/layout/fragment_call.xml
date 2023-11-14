@@ -40,6 +40,7 @@
             android:id="@+id/button_911"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:layout_marginBottom="6dp"
             android:text="Call 911"
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
@@ -53,8 +54,6 @@
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
             app:layout_constraintTop_toTopOf="@+id/button_911" />
-
-
 
     </LinearLayout>
 
