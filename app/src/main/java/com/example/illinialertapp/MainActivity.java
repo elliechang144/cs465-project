@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.home) { // edit, since no one will click hoem from the home page
+        if (itemId == R.id.home) { // edit, since no one will click home from the home page
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.flFragment, homeFragment)
