@@ -13,11 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CallFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CallFragment extends Fragment {
     public CallFragment() {
         // Required empty public constructor
@@ -42,19 +37,6 @@ public class CallFragment extends Fragment {
         button_911.setOnClickListener(arg -> showConfirmationDialog("911"));
         button_campus_safety.setOnClickListener(arg -> showConfirmationDialog("2173338911"));
 
-        /*
-        button_911.setOnClickListener(arg -> {
-            Intent phone_intent_911 = new Intent(Intent.ACTION_CALL);
-            phone_intent_911.setData(Uri.parse("tel:911"));
-            startActivity(phone_intent_911);
-        });
-
-        button_campus_safety.setOnClickListener(arg -> {
-            Intent phone_intent_campus_safety = new Intent(Intent.ACTION_CALL);
-            phone_intent_campus_safety.setData(Uri.parse("tel:2173338911"));
-            startActivity(phone_intent_campus_safety);
-        });
-         */
         return view;
     }
 
@@ -76,5 +58,6 @@ public class CallFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
+        builder.show();
     }
 }
