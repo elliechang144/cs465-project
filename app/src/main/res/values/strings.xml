@@ -2,5 +2,6 @@
     <string name="app_name">Illini Alert App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="emergency_message">If you are in an emergency, call authorities NOW.
-        Call 911 if... Call campus safety if...</string>
+        Call 911 if you need immediate assistance with a life-threatening situation.
+        Call campus safety if you require assistance on campus for non-life-threatening situations.</string>
 </resources>
