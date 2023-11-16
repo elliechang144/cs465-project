@@ -32,7 +32,7 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_data, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_incident, parent, false);
         return new ViewHolder(view);
     }
 
@@ -41,6 +41,7 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
         Incident incident = incidentList.get(position);
         holder.titleTextView.setText(incident.getTitle());
         holder.descriptionTextView.setText(incident.getDescription());
+        holder.smallDescriptionTextView.setText(incident.getSmallDescription()); // Bind small description text
     }
 
     @Override
@@ -52,24 +53,29 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView descriptionTextView;
+        TextView smallDescriptionTextView; // Added for small description
         Button readMoreButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.textViewTitle);
             descriptionTextView = itemView.findViewById(R.id.textViewDescription);
+            smallDescriptionTextView = itemView.findViewById(R.id.textViewSmallDescription); // Reference to small description TextView
             readMoreButton = itemView.findViewById(R.id.readMoreButton);
 
-            // Set the click listener for the "Read More" button
             readMoreButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onReadMoreClick(incidentList.get(position));
+                    // Toggle the visibility of the small description
+                    if (smallDescriptionTextView.getVisibility() == View.GONE) {
+                        smallDescriptionTextView.setVisibility(View.VISIBLE);
+                        readMoreButton.setText("Read Less");
+                    } else {
+                        smallDescriptionTextView.setVisibility(View.GONE);
+                        readMoreButton.setText("Read More");
                     }
                 }
             });
-        }
-    }
+ }
+}
 }
