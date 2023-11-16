@@ -15,7 +15,7 @@
         android:id="@+id/data"
         android:title="Data"
         app:showAsAction="always|withText"
-        android:icon="@drawable/data_foreground" />
+        android:icon="@drawable/analytics_foreground" />
     <item
         android:id="@+id/call"
         android:title="Call"
