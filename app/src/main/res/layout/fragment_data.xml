@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
-    app:cardUseCompatPadding="true">
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Sorting Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSortAsc"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Incident Title" />
+            android:layout_weight="1"
+            android:text="Past Alerts"
+            android:layout_marginEnd="4dp"/>
 
-        <TextView
-            android:id="@+id/textViewDescription"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSortDesc"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Incident Description" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/readMoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Read More"
-            android:layout_gravity="end"/>
+            android:layout_weight="1"
+            android:text="Recent Alerts"
+            android:layout_marginStart="4dp"/>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+    <!-- RecyclerView for displaying incidents -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
