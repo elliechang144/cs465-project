@@ -31,12 +31,11 @@ public class DataFragment extends Fragment {
         incidents = DataManager.getHardcodedIncidents();
         adapter = new IncidentsAdapter(incidents);
 
-        // Setting up the OnItemClickListener for the adapter
-        adapter.setOnItemClickListener(new IncidentsAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new IncidentsAdapter.OnItemClickListener()
+        {
             @Override
-            public void onReadMoreClick(Incident incident) {
-                // Implement what happens when the 'Read More' button is clicked
-                // For example, show a Toast or navigate to a new fragment/activity
+            public void onReadMoreClick(Incident incident)
+            {
                 Toast.makeText(getActivity(), "Read More about: " + incident.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -59,16 +58,19 @@ public class DataFragment extends Fragment {
         return view;
     }
 
-    private void sortIncidentsByDate(boolean ascending) {
-        if (incidents != null) {
-            Collections.sort(incidents, new Comparator<Incident>() {
+    private void sortIncidentsByDate(boolean ascending)
+    {
+        if (incidents != null)
+        {
+            Collections.sort(incidents, new Comparator<Incident>()
+            {
                 @Override
-                public int compare(Incident i1, Incident i2) {
-                    // Assuming Incident class has a method getDate() returning the date
+                public int compare(Incident i1, Incident i2)
+                {
                     return ascending ? i1.getDate().compareTo(i2.getDate()) : i2.getDate().compareTo(i1.getDate());
                 }
             });
             adapter.notifyDataSetChanged();
-}
-}
+        }
+    }
 }
