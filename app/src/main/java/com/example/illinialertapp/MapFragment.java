@@ -15,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.content.Context;
@@ -86,13 +87,38 @@ public class MapFragment extends Fragment {
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull GoogleMap googleMap) {
-                LatLng defaultLoc = new LatLng(40.785091, -73.968285);
+                LatLng tempFireLoc = new LatLng(40.10766,	-88.23376);
                 googleMap.addMarker(new MarkerOptions()
-                        .position(defaultLoc)
-                        .title("Default Location")
+                        .position(tempFireLoc)
+                        .title("Fire")
                         .icon(BitmapFromVector(requireContext(),
                         R.drawable.baseline_local_fire_department_24)));
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLoc, 15f));
+
+                LatLng tempHazardLoc = new LatLng(40.1125,	-88.22313);
+                googleMap.addMarker(new MarkerOptions()
+                        .position(tempHazardLoc)
+                        .title("Hazard")
+                        .icon(BitmapFromVector(requireContext(),
+                                R.drawable.baseline_dangerous_24)));
+
+                LatLng tempTornado = new LatLng(40.110558, -88.228333);
+                googleMap.addMarker(new MarkerOptions()
+                        .position(tempTornado)
+                        .title("Tornado")
+                        .icon(BitmapFromVector(requireContext(),
+                                R.drawable.baseline_tornado_24)));
+
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                builder.include(tempFireLoc);
+                builder.include(tempHazardLoc);
+                builder.include(tempTornado);
+
+                LatLngBounds bounds = builder.build();
+
+                int padding = 100;
+
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
             }
         });
 
