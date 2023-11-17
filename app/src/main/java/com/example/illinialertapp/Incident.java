@@ -8,8 +8,8 @@ public class Incident {
     private String Type;
     private double latitude;
     private double longitude;
-    private String date; // You can use more specific date types if needed
-    private String smallDescription; // Field for small description
+    private String date;
+    private String smallDescription;
 
     // Constructor
     public Incident(String id, String title, String description, double latitude, double longitude, String date, String smallDescription,  String Type) {
@@ -78,7 +78,7 @@ public class Incident {
         this.date = date;
     }
 
-    public void setSmallDescription(String smallDescription) { // Setter for small description
+    public void setSmallDescription(String smallDescription) {
         this.smallDescription = smallDescription;}
     public void setType(String Type) {this.Type = Type; }
 }
