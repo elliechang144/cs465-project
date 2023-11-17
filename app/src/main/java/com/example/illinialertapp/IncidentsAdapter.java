@@ -41,6 +41,7 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
         Incident incident = incidentList.get(position);
         holder.titleTextView.setText(incident.getTitle());
         holder.descriptionTextView.setText(incident.getDescription());
+        holder.textViewDate.setText(incident.getDate());
         holder.smallDescriptionTextView.setText(incident.getSmallDescription()); // Bind small description text
     }
 
@@ -53,16 +54,18 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView descriptionTextView;
-        TextView smallDescriptionTextView; // Added for small description
+        TextView smallDescriptionTextView;// Added for small description
+
+        TextView textViewDate;
         Button readMoreButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.textViewTitle);
             descriptionTextView = itemView.findViewById(R.id.textViewDescription);
+            textViewDate = itemView.findViewById(R.id.textViewDate);
             smallDescriptionTextView = itemView.findViewById(R.id.textViewSmallDescription); // Reference to small description TextView
             readMoreButton = itemView.findViewById(R.id.readMoreButton);
-
             readMoreButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

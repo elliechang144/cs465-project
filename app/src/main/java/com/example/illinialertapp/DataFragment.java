@@ -49,6 +49,13 @@ public class DataFragment extends Fragment {
         btnSortAsc.setOnClickListener(v -> sortIncidentsByDate(true));
         btnSortDesc.setOnClickListener(v -> sortIncidentsByDate(false));
 
+
+        Button btnDataVisualization = view.findViewById(R.id.btnDataVisualization);
+        btnDataVisualization.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DataAnalysis.class);
+            startActivity(intent);
+        });
+
         return view;
     }
 
