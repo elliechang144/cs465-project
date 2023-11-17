@@ -7,15 +7,17 @@ public class Incident {
     private double latitude;
     private double longitude;
     private String date; // You can use more specific date types if needed
+    private String smallDescription; // Field for small description
 
     // Constructor
-    public Incident(String id, String title, String description, double latitude, double longitude, String date) {
+    public Incident(String id, String title, String description, double latitude, double longitude, String date, String smallDescription) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
         this.date = date;
+        this.smallDescription = smallDescription;
     }
 
     // Getters
@@ -43,6 +45,10 @@ public class Incident {
         return date;
     }
 
+    public String getSmallDescription() { // Getter for small description
+        return smallDescription;
+    }
+
     // Setters
     public void setId(String id) {
         this.id = id;
@@ -67,4 +73,8 @@ public class Incident {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public void setSmallDescription(String smallDescription) { // Setter for small description
+        this.smallDescription = smallDescription;
+}
 }
