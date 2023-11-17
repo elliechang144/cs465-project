@@ -5,7 +5,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Sorting Buttons -->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnDataVisualization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Visualization"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +41,6 @@
             android:layout_marginStart="4dp"/>
     </LinearLayout>
 
-    <!-- RecyclerView for displaying incidents -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

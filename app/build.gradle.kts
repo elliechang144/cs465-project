@@ -49,6 +49,7 @@ android {
 dependencies {
 
     // AndroidX dependencies
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
