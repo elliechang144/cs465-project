@@ -81,6 +81,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.ismaeldivita.chipnavigation:chip-navigation-bar:1.4.0")
 
     implementation("androidx.cardview:cardview:1.0.0")
 }
