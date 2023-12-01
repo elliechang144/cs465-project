@@ -18,7 +18,8 @@ public class DataManager {
                 -88.23706,
                 "2021-08-22",
                 "Shots reported. Area is currently unsafe. Avoid the vicinity.",
-                "Shooting"
+                "Shooting",
+                R.drawable.gun_32
         ));
 
         // Armed robbery at Sixth St/Daniel St
@@ -30,7 +31,8 @@ public class DataManager {
                 -88.23047,
                 "2021-12-13",
                 "Robbery alert. Ensure personal safety and report any suspicious activity.",
-                "Robbery"
+                "Robbery",
+                R.drawable.money_32
         ));
 
         // Fire at 901 S Fourth St, Champaign
@@ -42,7 +44,8 @@ public class DataManager {
                 -88.23376,
                 "2022-11-03",
                 "Fire reported. Avoid the area and allow access to emergency services.",
-                "Fire"
+                "Fire",
+                R.drawable.fire_32
         ));
 
         // Stabbing at 100 block of East Green St
@@ -54,7 +57,8 @@ public class DataManager {
                 -88.230474,
                 "2023-03-24",
                 "Stabbing incident reported. Area is currently unsafe. Avoid the vicinity.",
-                "Stabbing"
+                "Stabbing",
+                R.drawable.knife_32
         ));
 
         // Hazard at 1101 Springfield Av Urbana
@@ -66,7 +70,8 @@ public class DataManager {
                 -88.22313,
                 "2023-08-30",
                 "Hazardous condition reported. Avoid area during cleanup operations.",
-                "Chemical Hazard"
+                "Chemical Hazard",
+                R.drawable.hazard_32
         ));
 
         // Shots fired at Third/Green, Champaign
@@ -78,7 +83,8 @@ public class DataManager {
                 -88.2354,
                 "2023-10-29",
                 "Shots reported in the area. Leave immediately if safe to do so.",
-                "Shooting"
+                "Shooting",
+                R.drawable.gun_32
         ));
 
         incidents.add(new Incident(
@@ -89,7 +95,8 @@ public class DataManager {
                 -88.20746,
                 "2021-06-28",
                 "Fire and utility addressing situation, continue to avoid area.",
-                "Fire"
+                "Fire",
+                R.drawable.fire_32
         ));
 
         incidents.add(new Incident(
@@ -100,7 +107,8 @@ public class DataManager {
                 -88.23243,
                 "2022-05-04",
                 "Fire and utility addressing situation, continue to avoid area.",
-                "Gas Leak"
+                "Gas Leak",
+                R.drawable.hazard_32
         ));
 
         incidents.add(new Incident(
@@ -111,7 +119,8 @@ public class DataManager {
                 -88.23212,
                 "2022-11-29",
                 "Subject last seen heading southbound down 6th St. Use caution and avoid the area.",
-                "Robbery"
+                "Robbery",
+                R.drawable.money_32
         ));
 
         incidents.add(new Incident(
@@ -122,7 +131,8 @@ public class DataManager {
                 -88.23853,
                 "2022-10-03",
                 "Fire reported at 1402 S First St, Champaign. Avoid area. If in or near this location, leave immediately.",
-                "Fire"
+                "Fire",
+                R.drawable.fire_32
                 ));
 
         return incidents;

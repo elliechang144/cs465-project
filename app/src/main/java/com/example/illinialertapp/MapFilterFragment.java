@@ -33,6 +33,12 @@ public class MapFilterFragment extends DialogFragment {
         rangeSlider.setValueFrom(0);
         rangeSlider.setValueTo(100);
 
+        TextView startLocationTextView = view.findViewById(R.id.start_location);
+        String chosenLoc = mapFragment.getChosenLocation();
+        if (chosenLoc != null) {
+            startLocationTextView.setText("Selected Location: " + chosenLoc);
+        }
+
         rangeSlider.addOnChangeListener((slider, value, fromUser) -> {
             int selectedRange = (int) value;
             selectedNumberTextView.setText("Selected Range: " + selectedRange);
@@ -40,6 +46,8 @@ public class MapFilterFragment extends DialogFragment {
                 mapFragment.filterByRange(selectedRange);
             }
         });
+
+
 
         Button btn_Close = view.findViewById(R.id.confirmButton);
         btn_Close.setOnClickListener(new View.OnClickListener() {

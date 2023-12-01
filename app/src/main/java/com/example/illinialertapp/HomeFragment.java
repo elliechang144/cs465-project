@@ -151,7 +151,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 if (!notificationTriggered) {
                     String[] simulatedData = {
-                            " Mon, Oct 30, 3:15 PM \nFire reported near Downtown Park. \n\nEvacuate immediately if in the vicinity.",
+                            " Mon, Oct 30, 3:15 PM \nFire reported near Red lions. \n\nEvacuate immediately if in the vicinity.",
                             " Tue, Oct 31, 8:00 AM \nRoad closure due to accident on Main St. \n\nSeek alternate routes.",
                     };
                     int randomIndex = new Random().nextInt(simulatedData.length);

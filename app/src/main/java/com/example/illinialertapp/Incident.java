@@ -11,8 +11,11 @@ public class Incident {
     private String date;
     private String smallDescription;
 
+    private int icon;
+
+
     // Constructor
-    public Incident(String id, String title, String description, double latitude, double longitude, String date, String smallDescription,  String Type) {
+    public Incident(String id, String title, String description, double latitude, double longitude, String date, String smallDescription,  String Type, int icon) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -21,6 +24,7 @@ public class Incident {
         this.date = date;
         this.smallDescription = smallDescription;
         this.Type = Type;
+        this.icon = icon;
     }
 
     // Getters
@@ -52,6 +56,9 @@ public class Incident {
         return smallDescription;
     }
 
+    public int getIcon() { return icon; }
+
+
     public String getType(){return Type;}
     // Setters
     public void setId(String id) {
@@ -81,4 +88,7 @@ public class Incident {
     public void setSmallDescription(String smallDescription) {
         this.smallDescription = smallDescription;}
     public void setType(String Type) {this.Type = Type; }
+
+    public void setIcon(int icon) { this.icon = icon; }
+
 }
