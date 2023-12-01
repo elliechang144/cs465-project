@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -138,6 +137,7 @@ public class MapFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MapFilterFragment filterFragment = new MapFilterFragment();
+                filterFragment.setMapFragment(MapFragment.this);
                 filterFragment.show(getChildFragmentManager(), "MapFilterFragment");
             }
         });
@@ -189,5 +189,9 @@ public class MapFragment extends Fragment {
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    public void filterByRange(int selectedValue) {
+
     }
 }
