@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF6E4A</color>
+    <color name="uiuc_orange">#E84A27</color>
+    <color name="red">#E10600</color>
 </resources>
