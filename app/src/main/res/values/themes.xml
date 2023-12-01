@@ -7,4 +7,11 @@
     </style>
 
     <style name="Theme.IlliniAlertApp" parent="Base.Theme.IlliniAlertApp" />
+    <style name="Theme.IlliniAlertApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.IlliniAlertApp.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.IlliniAlertApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
