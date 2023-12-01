@@ -53,7 +53,6 @@ public class DataAnalysis extends AppCompatActivity {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Incident Types");
-        //int[] colors = new int[] { Color., Color.MAGENTA, Color.GREEN, Color.BLUE, Color.BLUE, Color.YELLOW};
         int[] colors = new int[]
                 {       Color.rgb(255, 216, 177),
                         Color.rgb(255, 196, 140),
