@@ -80,7 +80,50 @@ public class DataManager {
                 "Shots reported in the area. Leave immediately if safe to do so.",
                 "Shooting"
         ));
-        // More incidents can be added here
+
+        incidents.add(new Incident(
+                "ID1",
+                "Boiler explosion",
+                "Boiler explosion reported at Hendrick House. Avoid area. If in or near this location, leave immediately.",
+                40.11246,
+                -88.20746,
+                "2021-06-28",
+                "Fire and utility addressing situation, continue to avoid area.",
+                "Fire"
+        ));
+
+        incidents.add(new Incident(
+                "ID2",
+                "Gas leak",
+                "Gas leak reported at 406 E Armory Avenue. Fire and utility addressing situation, continue to avoid area.",
+                40.10585,
+                -88.23243,
+                "2022-05-04",
+                "Fire and utility addressing situation, continue to avoid area.",
+                "Gas Leak"
+        ));
+
+        incidents.add(new Incident(
+                "ID3",
+                "Armed Robbery",
+                "Armed Robbery reported at 500 E University Ave, Champaign. Subject last seen heading southbound down 6th St. Use caution and avoid the area.",
+                40.11643,
+                -88.23212,
+                "2022-11-29",
+                "Subject last seen heading southbound down 6th St. Use caution and avoid the area.",
+                "Robbery"
+        ));
+
+        incidents.add(new Incident(
+                "ID4",
+                "Fire",
+                "Fire reported at 1402 S First St, Champaign. Avoid area. If in or near this location, leave immediately.",
+                40.11643,
+                -88.23853,
+                "2022-10-03",
+                "Fire reported at 1402 S First St, Champaign. Avoid area. If in or near this location, leave immediately.",
+                "Fire"
+                ));
 
         return incidents;
     }
