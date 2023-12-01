@@ -67,6 +67,7 @@
             android:id="@+id/button_911"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:backgroundTint="@color/red"
             android:text="Call 911"
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
