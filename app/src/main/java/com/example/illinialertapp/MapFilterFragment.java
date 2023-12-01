@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.slider.RangeSlider;
@@ -37,6 +38,14 @@ public class MapFilterFragment extends DialogFragment {
             selectedNumberTextView.setText("Selected Range: " + selectedRange);
             if (mapFragment != null) {
                 mapFragment.filterByRange(selectedRange);
+            }
+        });
+
+        Button btn_Close = view.findViewById(R.id.confirmButton);
+        btn_Close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
 

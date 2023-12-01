@@ -58,4 +58,13 @@
         android:text="Selected Range (miles): "
         android:textSize="15dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmButton"
+        android:text="Okay"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="280dp"
+        />
+
 </FrameLayout>
