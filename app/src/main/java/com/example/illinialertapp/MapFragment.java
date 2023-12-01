@@ -1,10 +1,14 @@
 package com.example.illinialertapp;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,9 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import java.io.IOException;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +43,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
  */
 public class MapFragment extends Fragment {
 
-    GoogleMap googleMap;
+    GoogleMap gMap;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,39 +93,43 @@ public class MapFragment extends Fragment {
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-                LatLng tempFireLoc = new LatLng(40.10766,	-88.23376);
-                googleMap.addMarker(new MarkerOptions()
-                        .position(tempFireLoc)
-                        .title("Fire")
-                        .icon(BitmapFromVector(requireContext(),
-                        R.drawable.baseline_local_fire_department_24)));
+            public void onMapReady(@NonNull GoogleMap map) {
+                gMap = map;
+                addMarkersAndZoom(gMap);
+            }
 
-                LatLng tempHazardLoc = new LatLng(40.1125,	-88.22313);
-                googleMap.addMarker(new MarkerOptions()
-                        .position(tempHazardLoc)
-                        .title("Hazard")
-                        .icon(BitmapFromVector(requireContext(),
-                                R.drawable.baseline_dangerous_24)));
+        });
 
-                LatLng tempTornado = new LatLng(40.110558, -88.228333);
-                googleMap.addMarker(new MarkerOptions()
-                        .position(tempTornado)
-                        .title("Tornado")
-                        .icon(BitmapFromVector(requireContext(),
-                                R.drawable.baseline_tornado_24)));
+        SearchView sView = view.findViewById(R.id.searchView);
+        sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                String location = sView.getQuery().toString();
 
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                if (location != null && !location.equals("")) {
 
-                builder.include(tempFireLoc);
-                builder.include(tempHazardLoc);
-                builder.include(tempTornado);
+                    if (getContext() != null && gMap != null) {
+                        Geocoder geocoder = new Geocoder(getContext());
 
-                LatLngBounds bounds = builder.build();
+                        try {
+                            List<Address> addressList = geocoder.getFromLocationName(location, 1);
+                            if (addressList != null && addressList.size() > 0) {
+                                Address address = addressList.get(0);
+                                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                                gMap.addMarker(new MarkerOptions().position(latLng).title(location));
+                                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                return false;
+            }
 
-                int padding = 100;
-
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
 
@@ -132,6 +143,37 @@ public class MapFragment extends Fragment {
         });
 
         return view;
+
+    }
+
+    private void addMarkersAndZoom(GoogleMap googleMap) {
+        LatLng tempFireLoc = new LatLng(40.10766, -88.23376);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempFireLoc)
+                .title("Fire")
+                .icon(BitmapFromVector(getContext(), R.drawable.baseline_local_fire_department_24)));
+
+        LatLng tempHazardLoc = new LatLng(40.1125, -88.22313);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempHazardLoc)
+                .title("Hazard")
+                .icon(BitmapFromVector(getContext(), R.drawable.baseline_dangerous_24)));
+
+        LatLng tempTornado = new LatLng(40.110558, -88.228333);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempTornado)
+                .title("Tornado")
+                .icon(BitmapFromVector(getContext(), R.drawable.baseline_tornado_24)));
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(tempFireLoc);
+        builder.include(tempHazardLoc);
+        builder.include(tempTornado);
+
+        LatLngBounds bounds = builder.build();
+        int padding = 100;
+
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
