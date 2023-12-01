@@ -1,7 +1,4 @@
 package com.example.illinialertapp;
-
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.TextView;
+import android.os.Handler;
+import android.os.Looper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,31 +19,24 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import androidx.fragment.app.FragmentManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
+import androidx.core.app.NotificationCompat;
+import java.util.Random;
 
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
+
 
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import android.view.View;
-
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.LatLng;
 import android.graphics.Color;
 
 /**
@@ -51,12 +44,18 @@ import android.graphics.Color;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class HomeFragment extends Fragment {
+    private TextView mostRecentIncidentTextView;
+    private MainActivity mainActivity;
+
+    private String fetchedData = null;
+    private boolean notificationTriggered = false;
 
     GoogleMap googleMap;
 
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -103,6 +102,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        mostRecentIncidentTextView = view.findViewById(R.id.most_recent_Incident);
+        simulateDataFetch();
+        if (fetchedData == null)
+        {
+            simulateDataFetch();
+        }
+        else
+        {
+            mostRecentIncidentTextView.setText("Date/time: " + fetchedData);
+        }
+
+
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (supportMapFragment == null) {
             supportMapFragment = SupportMapFragment.newInstance();
@@ -124,7 +135,7 @@ public class HomeFragment extends Fragment {
                         .radius(50) // Radius in meters, adjust as needed
                         .strokeWidth(2) // Width of the circle's outline
                         .strokeColor(Color.BLUE) // Color of the circle's outline
-                        .fillColor(Color.argb(70, 0, 0, 255)); // Color of the circle's fill
+                        .fillColor(Color.argb(70, 0, 0, 255));
 
                 Circle circle = googleMap.addCircle(circleOptions);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLoc, 17f));
@@ -133,6 +144,51 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
+    }
+    private void simulateDataFetch() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!notificationTriggered) {
+                    String[] simulatedData = {
+                            " Mon, Oct 30, 3:15 PM \nFire reported near Downtown Park. \n\nEvacuate immediately if in the vicinity.",
+                            " Tue, Oct 31, 8:00 AM \nRoad closure due to accident on Main St. \n\nSeek alternate routes.",
+                    };
+                    int randomIndex = new Random().nextInt(simulatedData.length);
+                    fetchedData = simulatedData[randomIndex];
+                    mostRecentIncidentTextView.setText("Date/time: " + fetchedData);
+                    sendNotification("New Alert", "The most recent incident text has been updated: " + fetchedData);
+                    notificationTriggered = true;
+                }
+            }
+        }, 10000);
+    }
+    private void sendNotification(String title, String message) {
+
+        if (getActivity() == null) {
+            return;
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String channelId = "my_channel_id";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence channelName = "Channel Name";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription("Channel Description");
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), channelId)
+                .setSmallIcon(R.drawable.notification)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        notificationManager.notify(new Random().nextInt(), builder.build());
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
