@@ -55,12 +55,13 @@ public class DataAnalysis extends AppCompatActivity {
         PieDataSet dataSet = new PieDataSet(entries, "Incident Types");
         //int[] colors = new int[] { Color., Color.MAGENTA, Color.GREEN, Color.BLUE, Color.BLUE, Color.YELLOW};
         int[] colors = new int[]
-                {Color.rgb(255, 216, 177),
+                {       Color.rgb(255, 216, 177),
                         Color.rgb(255, 196, 140),
                         Color.rgb(255, 171, 109),
                         Color.rgb(255, 155, 89),
                         Color.rgb(255, 127, 80),
-                        Color.rgb(255, 153, 102)};
+                        Color.rgb(255, 153, 102),
+                        Color.rgb(255, 140, 70) };
         dataSet.setColors(colors);
         dataSet.setValueTextSize(14f);
         PieData pieData = new PieData(dataSet);
@@ -88,7 +89,8 @@ public class DataAnalysis extends AppCompatActivity {
                 Color.rgb(255, 171, 109),
                 Color.rgb(255, 155, 89),
                 Color.rgb(255, 127, 80),
-                Color.rgb(255, 153, 102)
+                Color.rgb(255, 153, 102),
+                Color.rgb(255, 140, 70)
         });
         dataSet.setValueTextSize(14f);
 
@@ -109,7 +111,7 @@ public class DataAnalysis extends AppCompatActivity {
             @Override
             public  String getAxisLabel(float value, AxisBase axis)
             {
-                return  super.getAxisLabel(value,axis) + "uint";
+                return  super.getAxisLabel(value,axis) ;
             }
 
         });
