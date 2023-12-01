@@ -147,28 +147,77 @@ public class MapFragment extends Fragment {
     }
 
     private void addMarkersAndZoom(GoogleMap googleMap) {
-        LatLng tempFireLoc = new LatLng(40.10766, -88.23376);
+        LatLng tempStabbingLoc = new LatLng(40.110291, -88.230474);
         googleMap.addMarker(new MarkerOptions()
-                .position(tempFireLoc)
+                .position(tempStabbingLoc)
+                .title("Stabbing")
+                .icon(BitmapFromVector(getContext(), R.drawable.knife_32)));
+
+        LatLng tempShootingLoc1 = new LatLng(40.11025, -88.2354);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempShootingLoc1)
+                .title("Shooting")
+                .icon(BitmapFromVector(getContext(), R.drawable.gun_32)));
+
+        LatLng tempShootingLoc2 = new LatLng(40.11024, -88.23706);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempShootingLoc2)
+                .title("Shooting")
+                .icon(BitmapFromVector(getContext(), R.drawable.gun_32)));
+
+        LatLng tempFireLoc1 = new LatLng(40.10766, -88.23376);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempFireLoc1)
                 .title("Fire")
-                .icon(BitmapFromVector(getContext(), R.drawable.baseline_local_fire_department_24)));
+                .icon(BitmapFromVector(getContext(), R.drawable.fire_32)));
+
+        LatLng tempFireLoc2 = new LatLng(40.11246, -88.20746);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempFireLoc2)
+                .title("Fire")
+                .icon(BitmapFromVector(getContext(), R.drawable.fire_32)));
+
+        LatLng tempFireLoc3 = new LatLng(40.11643, -88.23853);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempFireLoc3)
+                .title("Fire")
+                .icon(BitmapFromVector(getContext(), R.drawable.fire_32)));
+
+        LatLng tempRobberyLoc1 = new LatLng(40.11643, -88.23212);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempRobberyLoc1)
+                .title("Robbery")
+                .icon(BitmapFromVector(getContext(), R.drawable.money_32)));
+
+        LatLng tempRobberyLoc2 = new LatLng(40.12262, -88.23047);
+        googleMap.addMarker(new MarkerOptions()
+                .position(tempRobberyLoc2)
+                .title("Robbery")
+                .icon(BitmapFromVector(getContext(), R.drawable.money_32)));
 
         LatLng tempHazardLoc = new LatLng(40.1125, -88.22313);
         googleMap.addMarker(new MarkerOptions()
                 .position(tempHazardLoc)
                 .title("Hazard")
-                .icon(BitmapFromVector(getContext(), R.drawable.baseline_dangerous_24)));
+                .icon(BitmapFromVector(getContext(), R.drawable.hazard_32)));
 
-        LatLng tempTornado = new LatLng(40.110558, -88.228333);
+        LatLng tempGasLoc = new LatLng(40.10585, -88.23243);
         googleMap.addMarker(new MarkerOptions()
-                .position(tempTornado)
-                .title("Tornado")
-                .icon(BitmapFromVector(getContext(), R.drawable.baseline_tornado_24)));
+                .position(tempGasLoc)
+                .title("Gas Leak")
+                .icon(BitmapFromVector(getContext(), R.drawable.hazard_32)));
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        builder.include(tempFireLoc);
+        builder.include(tempStabbingLoc);
+        builder.include(tempShootingLoc1);
+        builder.include(tempShootingLoc2);
+        builder.include(tempFireLoc1);
+        builder.include(tempFireLoc2);
+        builder.include(tempFireLoc3);
+        builder.include(tempRobberyLoc1);
+        builder.include(tempRobberyLoc2);
         builder.include(tempHazardLoc);
-        builder.include(tempTornado);
+        builder.include(tempGasLoc);
 
         LatLngBounds bounds = builder.build();
         int padding = 100;

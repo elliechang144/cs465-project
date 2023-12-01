@@ -42,7 +42,7 @@ public class DataManager {
                 -88.23376,
                 "2022-11-03",
                 "Fire reported. Avoid the area and allow access to emergency services.",
-                "FireAccident"
+                "Fire"
         ));
 
         // Stabbing at 100 block of East Green St
@@ -50,8 +50,8 @@ public class DataManager {
                 "ID4",
                 "Stabbing",
                 "Stabbing reported at 100 block of East Green St. Avoid area.",
-                38.99989,
-                -110.161,
+                40.110291,
+                -88.230474,
                 "2023-03-24",
                 "Stabbing incident reported. Area is currently unsafe. Avoid the vicinity.",
                 "Stabbing"
