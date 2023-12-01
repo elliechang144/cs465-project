@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,6 +53,8 @@ public class MapFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String chosenLocation;
 
     public MapFragment() {
         // Required empty public constructor
@@ -122,6 +125,7 @@ public class MapFragment extends Fragment {
                             e.printStackTrace();
                         }
                     }
+                    chosenLocation = location;
                 }
                 return false;
             }
@@ -191,7 +195,79 @@ public class MapFragment extends Fragment {
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
-    public void filterByRange(int selectedValue) {
+    public void filterByRange(int selectedRadius) {
+        double startLatitude = 40.10766;
+        double startLongitude = -88.23376;
+        LatLng startPos = new LatLng(startLatitude, startLongitude);
+        Geocoder geocoder = new Geocoder(getContext());
+
+        if (chosenLocation != null) {
+            try {
+                List<Address> addressList = geocoder.getFromLocationName(chosenLocation, 1);
+                if (addressList != null && addressList.size() > 0) {
+                    Address address = addressList.get(0);
+                    startPos = new LatLng(address.getLatitude(), address.getLongitude());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<Incident> incidents = DataManager.getHardcodedIncidents();
+        List<Incident> filteredIncidents = filterAddressesByDistance(startLatitude, startLongitude, incidents, selectedRadius);
+        for (Incident incident : filteredIncidents) {
+            markIncident(incident, gMap);
+        }
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(startPos);
+
+        LatLngBounds bounds = builder.build();
+        int padding = 500;
+
+        gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
 
     }
+
+    public void markIncident(Incident incident, GoogleMap googleMap) {
+        LatLng incidentLatlng = new LatLng(incident.getLatitude(), incident.getLongitude());
+        googleMap.addMarker(new MarkerOptions()
+                .position(incidentLatlng)
+                .title("Fire")
+                .icon(BitmapFromVector(getContext(), R.drawable.baseline_local_fire_department_24)));
+    }
+
+    public List<Incident> filterAddressesByDistance(double startLatitude, double startLongitude, List<Incident> incidents, double radiusInMiles) {
+        List<Incident> filteredIncidents = new ArrayList<>();
+
+        for (Incident incident : incidents) {
+            double endLatitude = incident.getLatitude();
+            double endLongitude = incident.getLongitude();
+            double distance = calculateDistance(startLatitude, startLongitude, endLatitude, endLongitude);
+            if (distance <= radiusInMiles) {
+                filteredIncidents.add(incident);
+            }
+        }
+
+        return filteredIncidents;
+    }
+    public double calculateDistance(double startLat, double startLng, double endLat, double endLng) {
+        final int R = 6371;
+
+        double latDistance = Math.toRadians(endLat - startLat);
+        double lngDistance = Math.toRadians(endLng - startLng);
+
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(startLat)) * Math.cos(Math.toRadians(endLat))
+                * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c * 0.621371;
+    }
+
+    public String getChosenLocation() {
+        return chosenLocation;
+    }
+
 }
