@@ -263,16 +263,20 @@ public class MapFragment extends Fragment {
         }
 
         List<Incident> incidents = DataManager.getHardcodedIncidents();
-        List<Incident> filteredIncidents = filterAddressesByDistance(startLatitude, startLongitude, incidents, selectedRadius);
-        for (Incident incident : filteredIncidents) {
-            markIncident(incident, gMap);
-        }
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(startPos);
+        List<Incident> filteredIncidents = filterAddressesByDistance(startLatitude, startLongitude, incidents, selectedRadius);
+        for (Incident incident : filteredIncidents) {
+            markIncident(incident, gMap);
+            LatLng incidentLatlng = new LatLng(incident.getLatitude(), incident.getLongitude());
+            builder.include(incidentLatlng);
+        }
+
+
 
         LatLngBounds bounds = builder.build();
-        int padding = 500;
+        int padding = 20;
 
         gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
 
@@ -283,7 +287,7 @@ public class MapFragment extends Fragment {
         googleMap.addMarker(new MarkerOptions()
                 .position(incidentLatlng)
                 .title("Fire")
-                .icon(BitmapFromVector(getContext(), R.drawable.baseline_local_fire_department_24)));
+                .icon(BitmapFromVector(getContext(), incident.getIcon())));
     }
 
     public List<Incident> filterAddressesByDistance(double startLatitude, double startLongitude, List<Incident> incidents, double radiusInMiles) {
