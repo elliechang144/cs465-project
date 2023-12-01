@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.IlliniAlertApp" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimary">@color/uiuc_orange</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/white</item>
     </style>
