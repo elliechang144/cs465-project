@@ -27,8 +27,14 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:text="Incident Description" />
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Date" />
 
-        <!-- Small description TextView, initially hidden -->
+
         <TextView
             android:id="@+id/textViewSmallDescription"
             android:layout_width="match_parent"

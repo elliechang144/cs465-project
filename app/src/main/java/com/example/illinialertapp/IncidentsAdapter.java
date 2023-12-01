@@ -19,12 +19,10 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
         this.incidentList = incidentList;
     }
 
-    // Interface for click listener
     public interface OnItemClickListener {
         void onReadMoreClick(Incident incident);
     }
 
-    // Method to set the listener
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
@@ -41,7 +39,8 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
         Incident incident = incidentList.get(position);
         holder.titleTextView.setText(incident.getTitle());
         holder.descriptionTextView.setText(incident.getDescription());
-        holder.smallDescriptionTextView.setText(incident.getSmallDescription()); // Bind small description text
+        holder.textViewDate.setText(incident.getDate());
+        holder.smallDescriptionTextView.setText(incident.getSmallDescription());
     }
 
     @Override
@@ -49,24 +48,27 @@ public class IncidentsAdapter extends RecyclerView.Adapter<IncidentsAdapter.View
         return incidentList.size();
     }
 
-    // ViewHolder class
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView descriptionTextView;
-        TextView smallDescriptionTextView; // Added for small description
+        TextView smallDescriptionTextView;
+
+        TextView textViewDate;
         Button readMoreButton;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView)
+        {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.textViewTitle);
             descriptionTextView = itemView.findViewById(R.id.textViewDescription);
-            smallDescriptionTextView = itemView.findViewById(R.id.textViewSmallDescription); // Reference to small description TextView
+            textViewDate = itemView.findViewById(R.id.textViewDate);
+            smallDescriptionTextView = itemView.findViewById(R.id.textViewSmallDescription);
             readMoreButton = itemView.findViewById(R.id.readMoreButton);
-
-            readMoreButton.setOnClickListener(new View.OnClickListener() {
+            readMoreButton.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
-                    // Toggle the visibility of the small description
+                public void onClick(View v)
+                {
                     if (smallDescriptionTextView.getVisibility() == View.GONE) {
                         smallDescriptionTextView.setVisibility(View.VISIBLE);
                         readMoreButton.setText("Read Less");

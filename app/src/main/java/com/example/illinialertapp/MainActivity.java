@@ -11,7 +11,6 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnItemSelectedListener {
-    Toolbar toolBar;
     BottomNavigationView bottomNavigationView;
     SettingsFragment settingsFragment = new SettingsFragment();
     HomeFragment homeFragment = new HomeFragment();
@@ -23,9 +22,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolBar = findViewById(R.id.toolbar);
+        Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
-        // getSupportActionBar().setIcon(R.drawable.settings_foreground);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(this);
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.action_settings) {
             getSupportFragmentManager()
@@ -42,7 +40,13 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             return true;
         }
-        else if (itemId == R.id.home) {
+        return false;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.home) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.flFragment, homeFragment)
