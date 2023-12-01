@@ -4,21 +4,21 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        app:showAsAction="always|withText"
+        app:showAsAction="always"
         android:icon="@drawable/home_foreground" />
     <item
         android:id="@+id/map"
         android:title="Map"
-        app:showAsAction="always|withText"
+        app:showAsAction="always"
         android:icon="@drawable/map_foreground" />
     <item
         android:id="@+id/data"
         android:title="Data"
-        app:showAsAction="always|withText"
+        app:showAsAction="always"
         android:icon="@drawable/analytics_foreground" />
     <item
         android:id="@+id/call"
         android:title="Call"
-        app:showAsAction="always|withText"
+        app:showAsAction="always"
         android:icon="@drawable/call_foreground" />
 </menu>
